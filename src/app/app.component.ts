@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Ema } from './trading/ema';
+import { TradingService } from './trading.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,24 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'trading';
+  emas!: Ema[];
+
+
+    constructor(private tradingService:TradingService){}
+
+    ngOnInit(){
+      this.getEma21();
+    }
+
+    getEma21(){
+      console.log('entro')
+      this.tradingService.getEma21().subscribe(data =>{
+        console.log(data);
+      })
+    }
+
+
+
 }
+
+
