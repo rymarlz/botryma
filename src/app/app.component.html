@@ -1,1 +1,99 @@
-aca
+<mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>monetization_on</mat-icon>
+    </button>
+    <span>Bot Trading</span>
+    <span class="example-spacer"></span>
+
+</mat-toolbar>
+<p></p>
+<div class="container">
+    <div div class="flex-container" fxLayout="row" fxLayoutAlign="space-between">
+        <mat-card class="example-card">
+
+            <mat-card-title>Precio ema 50</mat-card-title>
+            <mat-card-content>
+                <p></p>
+                <p>{{ema50}}</p>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+                <button mat-button></button>
+                <button mat-button></button>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+        <p></p>
+        <mat-card class="example-card">
+
+            <mat-card-title>Precio ema 21</mat-card-title>
+            <mat-card-content>
+                <p></p>
+                <p>{{ema21}}</p>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+                <button mat-button></button>
+                <button mat-button></button>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+
+        <p></p>
+        <mat-card class="example-card">
+
+            <mat-card-title>Precio ema 8</mat-card-title>
+            <mat-card-content>
+                <p></p>
+                <p>{{ema8}}</p>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+                <button mat-button></button>
+                <button mat-button></button>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+        <mat-card class="example-card">
+
+            <mat-card-title>Precio BTCUSDT</mat-card-title>
+            <mat-card-content>
+                <p></p>
+                <p>{{precioBTCUSDT}}</p>
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+                <button mat-button></button>
+                <button mat-button></button>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+    <mat-card class="example-card">
+
+        <mat-card-title>Entrada para ema21 y ema 8</mat-card-title>
+        <mat-card-content>
+            <p>{{entradaResapuesta(entradaEma8Ema21Long)}}</p>
+
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+            <button mat-button></button>
+            <button mat-button></button>
+        </mat-card-actions>
+        <mat-card-footer>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-footer>
+    </mat-card>
+
+
+
+</div>
