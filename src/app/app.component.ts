@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Ema } from './trading/ema';
 import { TradingService } from './trading.service';
 
 
@@ -10,14 +9,18 @@ import { TradingService } from './trading.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'trading';
-  emas!: Ema[];
-  ema50!:any[];
-  ema21!:any[];
-  ema8!:any[];
-  precioBTCUSDT!:any[]
+  
+ 
+  ema50!:number;
+  ema21!:number;
+  ema8!:number;
+  precioBTCUSDT!:number
 
-  precioEntradaLong!:any
+  emaNUm21!:number;
+
+
+  precioVentaLong!:number;
+  precioEntradaLong!:number;
 
   entradaEma8Ema21Long:boolean=false
   entradaActiva:boolean=false
@@ -31,8 +34,8 @@ export class AppComponent {
       const intervalIdEma8 = setInterval(this.getEma8.bind(this), 1000);
       const intervalIdEma21 = setInterval(this.getEma21.bind(this), 1000);
       const intervalIdPrecioBTCUSDT = setInterval(this.getPrecioBTCUSDT.bind(this), 1000);
-      const intervalIdEntradaLong = setInterval( this.entradaEma21Ema8.bind(this),1000);
-     
+     // const intervalIdEntradaLong = setInterval( this.entradaEma21Ema8.bind(this),1000);
+      const entradaema21_8Long = setInterval(this.entradaema21_8Long.bind(this),1000)
  
     }
     getEma21(){
@@ -66,20 +69,26 @@ export class AppComponent {
       })
     }
 
-    entradaEma21Ema8(){
-      console.log('entro al entrada')
-      console.log(this.entradaActiva)
-      if(this.ema21>this.ema8 && this.entradaActiva!){
-        console.log('entro al if de entrada falsa')
-        this.entradaEma8Ema21Long=true;
-        this.setPrecioEntrada(this.getPrecioBTCUSDT());
-      }if (this.ema21>this.ema8 && this.entradaActiva){
-        return console.log('entrada activa')
-      }if(this.ema21<this.ema8 && this.entradaActiva){
-          this.entradaActiva=false
-          console.log('cierre de entrada')
-      }
-    }
+   
+  entradaema21_8Long(){
+   
+    const precioJson = {"precioEntrada":this.precioEntradaLong,"precioVenta": this.precioVentaLong}
+
+    if(this.ema21>this.ema8){
+        if(this.entradaActiva!){
+          this.precioEntradaLong=this.precioBTCUSDT
+          this.entradaActiva=true
+           return 
+        } else {
+          if(this.ema21<this.ema8){
+            this.precioVentaLong=this.precioBTCUSDT
+            this.entradaActiva=false
+            this.setPrecioEntrada(precioJson)
+          }
+        }
+    }else  console.log('no tiene entrada')
+  }
+
     entradaResapuesta(entrada:boolean){
       if(!entrada)return 'Sin entradas por ahora'
       else return 'Entrada activa en Long'
