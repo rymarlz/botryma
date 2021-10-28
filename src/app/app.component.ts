@@ -11,16 +11,18 @@ import { TradingService } from './trading.service';
 export class AppComponent {
   
  
-  ema50!:number;
-  ema21!:number;
-  ema8!:number;
-  precioBTCUSDT!:number
+  ema50!:any;
+  ema21!:any;
+  ema8!:any;
+  precioBTCUSDT!:any
 
   emaNUm21!:number;
 
 
   precioVentaLong!:number;
   precioEntradaLong!:number;
+
+
 
   entradaEma8Ema21Long:boolean=false
   entradaActiva:boolean=false
@@ -35,13 +37,17 @@ export class AppComponent {
       const intervalIdEma21 = setInterval(this.getEma21.bind(this), 1000);
       const intervalIdPrecioBTCUSDT = setInterval(this.getPrecioBTCUSDT.bind(this), 1000);
      // const intervalIdEntradaLong = setInterval( this.entradaEma21Ema8.bind(this),1000);
-      const entradaema21_8Long = setInterval(this.entradaema21_8Long.bind(this),1000)
+      
+     
+     const entradaema21_8Long = setInterval(this.entradaema21_8Long.bind(this),1000)
  
     }
     getEma21(){
       let _self = this
       this.tradingService.getEma21().subscribe(data =>{
-        _self.ema21=data["ema 21 :"]
+        let p =data["ema 21 :"]
+        _self.ema21=parseFloat(p).toFixed(4)
+        
       
       })
       }
@@ -49,7 +55,9 @@ export class AppComponent {
     getEma8(){
       let _self = this
       this.tradingService.getEma8().subscribe(data =>{
-        _self.ema8=data['la ema 8 es un:']
+        let p = data['la ema 8 es un:']
+        _self.ema8=parseFloat(p).toFixed(4)
+        
      
       })
       }
@@ -57,7 +65,9 @@ export class AppComponent {
     getEma50(){
       let _self = this
       this.tradingService.getEma50().subscribe(data =>{
-        _self.ema50=data['ema50']
+        let p = data['ema50']
+        _self.ema50=parseFloat(p).toFixed(4)
+   
        
       })
      
@@ -65,26 +75,26 @@ export class AppComponent {
     getPrecioBTCUSDT(){
       let _self = this
       this.tradingService.getPrecioBTCUSDT().subscribe(data =>{
-        _self.precioBTCUSDT=data['precioBTCUSDT']
-      })
+         let p=data['precioBTCUSDT']
+     _self.precioBTCUSDT=parseFloat(p).toFixed(4) 
+      }) 
     }
 
    
   entradaema21_8Long(){
-   
     const precioJson = {"precioEntrada":this.precioEntradaLong,"precioVenta": this.precioVentaLong}
-
     if(this.ema21>this.ema8){
-        if(this.entradaActiva!){
+        if(this.entradaActiva==false){
+          console.log('entro al false')
           this.precioEntradaLong=this.precioBTCUSDT
           this.entradaActiva=true
-           return 
         } else {
           if(this.ema21<this.ema8){
             this.precioVentaLong=this.precioBTCUSDT
             this.entradaActiva=false
             this.setPrecioEntrada(precioJson)
-          }
+            console.log('entrada activa')
+          }else  console.log(this.precioEntradaLong)
         }
     }else  console.log('no tiene entrada')
   }

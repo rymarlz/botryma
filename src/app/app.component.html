@@ -4,9 +4,9 @@
     </button>
     <span>Bot Trading</span>
     <span class="example-spacer"></span>
-
 </mat-toolbar>
-<p></p>
+
+
 <div class="container">
     <div class="flex-container" fxLayout="Column">
         <div fxLayout="Row">
@@ -71,6 +71,22 @@
             <mat-card-title>Entrada Activa:</mat-card-title>
             <mat-card-content>
                 <p>{{entradaActiva}}</p>
+
+            </mat-card-content>
+            <mat-divider inset></mat-divider>
+            <mat-card-actions>
+                <button mat-button></button>
+                <button mat-button></button>
+            </mat-card-actions>
+            <mat-card-footer>
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+        <mat-card class="example-card">
+
+            <mat-card-title>Precio entrada:</mat-card-title>
+            <mat-card-content>
+                <p>{{precioEntradaLong}}</p>
 
             </mat-card-content>
             <mat-divider inset></mat-divider>
