@@ -12,6 +12,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
   declarations: [
     AppComponent
@@ -28,6 +29,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatDividerModule,
     MatProgressBarModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [
