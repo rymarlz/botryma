@@ -88,15 +88,18 @@ export class AppComponent {
           console.log('entro al false')
           this.precioEntradaLong=this.precioBTCUSDT
           this.entradaActiva=true
-        } else {
-          if(this.ema21<this.ema8){
-            this.precioVentaLong=this.precioBTCUSDT
-            this.entradaActiva=false
-            this.setPrecioEntrada(precioJson)
-            console.log('entrada activa')
-          }else  console.log(this.precioEntradaLong)
+        } console.log('compra activa')
+    }
+    if(this.ema21<this.ema8){
+        if(this.entradaActiva==true){
+          this.precioVentaLong=this.precioBTCUSDT
+          this.entradaActiva=false
+          this.setPrecioEntrada(precioJson)
+          console.log('entrada cerrada')
         }
-    }else  console.log('no tiene entrada')
+      
+    }
+
   }
 
     entradaResapuesta(entrada:boolean){
